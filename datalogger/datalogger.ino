@@ -78,6 +78,6 @@ void loop()
 int error_file(){
   digitalWrite(gled, LOW);
   digitalWrite(rled, HIGH);
-  delay(50);
+  delay(250);
   digitalWrite(rled, LOW);
 }
