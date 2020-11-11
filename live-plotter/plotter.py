@@ -15,10 +15,10 @@ ay_ar = []
 az_ar = []
 
 data_count = 0      # Counter for x axis
-plt.ion()           # Get ready to plot live data   
+plt.style.use('ggplot')
 
 def graph():        # Create a function to make plot
-
+    plt.ion()           # Get ready to plot live data   
     plt.subplot(211)                                # Subplot for gyro values
     plt.grid(True)                                  # Add grid
     plt.ylabel('Gyro Values')                       # Rename y axis label
@@ -37,14 +37,13 @@ def graph():        # Create a function to make plot
     plt.plot(az_ar, 'b', label = " Z axis ") 
     plt.legend(loc = 'upper left')
 
-   
 
-while True:                                     # Loop forever
-    while (ardu_data.inWaiting() == 0):         # Wait until there is data
+while True:                                         # Loop forever
+    while (ardu_data.inWaiting() == 0):             # Wait until there is data
         pass
-    ardu_string = ardu_data.readline()          # Read the coming line
-    ardu_decoded = ardu_string.decode('utf-8')  # Decode data to make it readable
-    data_array = ardu_decoded.split(',')        # Split incoming data to group them
+    ardu_string = ardu_data.readline()              # Read the coming line
+    ardu_decoded = ardu_string.decode('utf-8')      # Decode data to make it readable
+    data_array = ardu_decoded.split(',')            # Split incoming data to group them
     
     ##  Convert values to float
     ax = float(data_array[0]) 
@@ -63,6 +62,7 @@ while True:                                     # Loop forever
     ay_ar.append(ay)
     az_ar.append(az)
 
+    plt.pause(0.001)                # Pause to catch up
     drawnow(graph)                  # Draw the graph
 
     data_count = data_count + 1     # Add one to x axis counter
