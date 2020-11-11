@@ -15,14 +15,14 @@ ay_ar = []
 az_ar = []
 
 data_count = 0      # Counter for x axis
-plt.style.use('ggplot')
+plt.style.use('classic')
 
 def graph():        # Create a function to make plot
     plt.ion()           # Get ready to plot live data   
     plt.subplot(211)                                # Subplot for gyro values
     plt.grid(True)                                  # Add grid
     plt.ylabel('Gyro Values')                       # Rename y axis label
-    plt.ylim(-20000, 20000)                         # Limit y axis 
+    #plt.ylim(-20000, 20000)                         # Limit y axis 
     plt.plot(gx_ar, 'r', label = " X axis ")        # Plotting gyro values for each axis
     plt.plot(gy_ar, 'k', label = " Y axis ") 
     plt.plot(gz_ar, 'b', label = " Z axis ") 
@@ -31,7 +31,7 @@ def graph():        # Create a function to make plot
     plt.subplot(212)                                # Subplot fot accelerometer values
     plt.grid(True)
     plt.ylabel('Accelerometer Values')
-    plt.ylim(-20000, 20000)
+    #plt.ylim(-20000, 20000)
     plt.plot(ax_ar, 'r', label = " X axis ")
     plt.plot(ay_ar, 'k', label = " Y axis ") 
     plt.plot(az_ar, 'b', label = " Z axis ") 
@@ -67,7 +67,7 @@ while True:                                         # Loop forever
 
     data_count = data_count + 1     # Add one to x axis counter
 
-    if(data_count > 25):            # If counter > 25 delete first element of the array
+    if(data_count > 50):            # If counter > 25 delete first element of the array
         gx_ar.pop(0)
         gy_ar.pop(0)
         gz_ar.pop(0)
